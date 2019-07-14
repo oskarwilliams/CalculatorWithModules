@@ -13,8 +13,10 @@ while (true) {
         arithmetic.calculate() ;
     } else if (calculatorMode == 2) {
         vowelCounting.calculate() ;
-    }
-    else if (calculatorMode == 3) {
+    } else if (calculatorMode == 3) {
         break
+    } else {
+        console.log('That is not a valid mode')
     }
+
 }

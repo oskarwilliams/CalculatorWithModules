@@ -1,7 +1,15 @@
 const userInput = require('./userInput');
 
 function getOperator() {
-    return userInput.getString('\n What operator do you want to use?')
+    operator = userInput.getString('\n What operator do you want to use?')
+    const validOperators = ['+','-','/','*','^'];
+    if (validOperators.includes(operator)){
+        return operator
+    } else {
+        console.log('That is not a valid operator');
+        return getOperator()
+    }
+    
 }
 
 function getNumbers(operator) {
@@ -30,10 +38,19 @@ function performFullCalculation(operator,numbers) {
             var filtered = numbers.filter(function(item) {return item !== 0})
             return total = filtered.reduce(function(accumulator, currentValue) {return accumulator / currentValue;});
             break;
+        case '^':
+            return total = numbers.reduce(function(accumulator, currentValue) {return accumulator ^ currentValue;});
     }
 }
 
 exports.calculate = function() {
+    // try {
+    //     const operator = getOperator();
+    // }
+    // catch(err) {
+    //     console.log('That is not a valid operator');
+    //     const operator = getOperator();
+    // }
     const operator = getOperator();
     const numbers = getNumbers(operator);
     const answer = performFullCalculation(operator,numbers);
