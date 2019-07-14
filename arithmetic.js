@@ -15,32 +15,23 @@ function getNumbers(operator) {
     return numbers
 }
 
-function performOneCalculation(a,b,c) {
-    switch(a) {
+function performFullCalculation(operator,numbers) {
+    switch(operator) {
         case '+':
-            return b += c;
+            return total = numbers.reduce(function(accumulator, currentValue) {return accumulator + currentValue;});
             break;
         case '-':
-            return b -= c;
+            return total = numbers.reduce(function(accumulator, currentValue) {return accumulator - currentValue;});
             break;        
         case '*':
-            return b *= c;
+            return total = numbers.reduce(function(accumulator, currentValue) {return accumulator * currentValue;});
             break;
         case '/':
-            return b /= c;
+            var filtered = numbers.filter(function(item) {return item !== 0})
+            return total = filtered.reduce(function(accumulator, currentValue) {return accumulator / currentValue;});
             break;
-    
     }
 }
-
-function performFullCalculation(operator,numbers) {
-    var answer = numbers[0]
-    for (var i = 1; i <numbers.length; i++) {
-        answer = performOneCalculation(operator,answer,numbers[i])
-    }
-    return answer
-}
-
 
 exports.calculate = function() {
     const operator = getOperator();
